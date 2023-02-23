@@ -1,0 +1,20 @@
+{
+  "name": "medical-appointment-scheduling-system",
+  "version": "1.0.0",
+  "description": "API for managing medical appointments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorcaio06/medical-appointment-scheduling-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorcaio06/medical-appointment-scheduling-system/issues"
+  },
+  "homepage": "https://github.com/victorcaio06/medical-appointment-scheduling-system#readme"
+}
