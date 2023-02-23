@@ -4,6 +4,7 @@
   "description": "API for managing medical appointments",
   "main": "index.js",
   "scripts": {
+    "start:dev": "nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/victorcaio06/medical-appointment-scheduling-system/issues"
   },
-  "homepage": "https://github.com/victorcaio06/medical-appointment-scheduling-system#readme"
+  "homepage": "https://github.com/victorcaio06/medical-appointment-scheduling-system#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
 }
