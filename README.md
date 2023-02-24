@@ -3,8 +3,11 @@ API for managing medical appointments
 
 ---
 
-## **Requisitos**
+# **Requisitos**
 
+## **Requisitos funcional**
+
+### **Cadastrar usuário**
 - [ ] Deve ser possível o usuário realizar um cadastro.
   - [ ] O usuário não precisa estar autenticado no sistema para se cadastrar.
   - [ ] Não deve ser possível realizar o cadastro de um usuário sem username e senha.
