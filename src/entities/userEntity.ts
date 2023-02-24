@@ -7,8 +7,8 @@ type IUser = {
 };
 
 export class User {
-  private _id: string;
-  private _isAdmin: boolean;
+  id: string;
+  isAdmin?: boolean;
 
   name: string;
   username: string;
@@ -18,21 +18,13 @@ export class User {
     this.name = name;
     this.username = username;
     this.password = password;
-    this._id = randomUUID();
-    this._isAdmin = false;
+    this.id = randomUUID();
+    this.isAdmin = false;
   }
 
   static create({ name, username, password }: IUser) {
     const user = new User({ name, username, password });
     
     return user;
-  }
-
-  get id() {
-    return this._id;
-  }
-
-  get isAdmin() {
-    return this._isAdmin;
   }
 }
