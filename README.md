@@ -16,3 +16,11 @@ API for managing medical appointments
   - [ ] Não deve ser possível o usuário cadastrar a permissão de administrador.
 
 ---
+
+### **Cadastrar especialidade**
+- [ ] Deve ser possível o usuário cadastrar uma especialidade.
+  - [ ] O usuário deve estar autenticado para cadastrar uma especialidade.
+  - [ ] Não deve ser possível cadastrar uma especialidade com o nome já existente.
+  - [ ] Não deve ser possível cadastrar uma especialidade com o campo nome vazio.
+  - [ ] O usuário precisa ter permissão de administrador.
+  - [ ] Deve ser possível cadastrar uma especialidade sem passar a descrição da mesma.

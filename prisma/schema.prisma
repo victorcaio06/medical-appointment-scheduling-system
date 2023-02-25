@@ -20,3 +20,15 @@ model User {
 
   @@map("users")
 }
+
+model Specialty {
+  id          String  @default(uuid())
+  name        String
+  description String?
+
+  createdAt DateTime @default(now())
+
+  @@id([id])
+  @@unique([name])
+  @@map("specialties")
+}
