@@ -20,10 +20,12 @@
   "homepage": "https://github.com/victorcaio06/medical-appointment-scheduling-system#readme",
   "dependencies": {
     "@prisma/client": "^4.10.1",
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.17",
     "@types/winston": "^2.4.4",
     "nodemon": "^2.0.20",
