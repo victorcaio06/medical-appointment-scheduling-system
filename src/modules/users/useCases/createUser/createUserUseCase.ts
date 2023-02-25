@@ -1,4 +1,4 @@
-import { User } from "../../../../entities/userEntity";
+import { User } from "../../entities/user.entity";
 import { CustomError } from "../../../../errors/custom.error";
 import { ParameterRequiredError } from "../../../../errors/parameter-required.error";
 import { IPasswordCrypto } from "../../../../infra/shared/crypto/password.crypto";
