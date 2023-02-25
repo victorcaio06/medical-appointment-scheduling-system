@@ -2,7 +2,7 @@ import { CustomError } from "../../../errors/custom.error";
 
 type ISpecialty = {
   name: string;
-  description: string;
+  description?: string;
 };
 
 export class Specialty {
@@ -14,7 +14,7 @@ export class Specialty {
     this.description = description;
   }
 
-  static create({ name, description }: ISpecialty): Specialty {
+  static create({ name, description }: ISpecialty) {
     if (!name)
       throw new CustomError("Name is required!", 422, "NAME_REQUIRED_ERROR");
 
