@@ -4,5 +4,59 @@
     "title": "Serviço de agendamento de consulta",
     "description": "Essa API é responsável pelo agendamento e gerenciamento de consultas.",
     "version": "1.0.0"
+  },
+  "paths": {
+    "/specialties": {
+      "post": {
+        "tags": [
+          "Specialties"
+        ],
+        "description": "Cadastrar especialidade do médico.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/SpecialtiesRequest"
+              }
+            }
+          }
+        },
+        "response": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema"
+              }
+            }
+          },
+          "409": {},
+          "422": {},
+          "500": {}
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SpecialtiesRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da especialidade.",
+            "example": "Ortopedia"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição da especialidade.",
+            "example": "Área responsável pelo cuidado da saúde relacionada aos elementos do aparelho locomotor, como ossos, músculos, ligamentos e articulações."
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ]
+      }
+    }
   }
 }
