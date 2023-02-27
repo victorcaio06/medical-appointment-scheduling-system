@@ -1,12 +1,19 @@
 import express from "express";
+import swaggerUI from "swagger-ui-express";
+
+import swaggerDocument from "../swagger.json";
+
 import { CustomError } from "./errors/custom.error";
 import { prismaClient } from "./infra/database/prisma.config";
+
 import { specialtyRouter } from "./routes/specialty.routes";
 import { userRouter } from "./routes/user.routes";
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 const port = 3434;
 

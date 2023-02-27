@@ -1,0 +1,8 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Serviço de agendamento de consulta",
+    "description": "Essa API é responsável pelo agendamento e gerenciamento de consultas.",
+    "version": "1.0.0"
+  }
+}
