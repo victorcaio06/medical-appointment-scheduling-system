@@ -12,14 +12,15 @@ export class CreateSpecialtyUseCase {
 
   async execute({ name, description }: ISpecialty) {
     const specialty = Specialty.create({ name, description });
-    
+
     const specialtyExists = await this.specialtyRepository.findByName(name);
 
     if (specialtyExists)
       throw new CustomError(
         "Specialty already exists!",
+        409,
+        "SPECIALTY_EXISTS_ERROR"
       );
-
 
     const specialtyCreated = await this.specialtyRepository.save(specialty);
 
