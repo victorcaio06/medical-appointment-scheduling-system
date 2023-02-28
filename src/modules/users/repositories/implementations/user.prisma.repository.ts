@@ -1,7 +1,7 @@
 import { prismaClient } from "../../../../infra/database/prisma.config";
 
 import { User } from "../../entities/user.entity";
-import { UserViewModel } from "../../../../infra/http/user-view-model";
+import { UserViewModel } from "../../../../infra/shared/http/user-view-model";
 import { IUserRepository } from "../user.repository";
 
 export class UserPrismaRepository implements IUserRepository {

@@ -1,4 +1,4 @@
-import { SpecialtyViewModel } from "../../../infra/http/specialty-view.model";
+import { SpecialtyViewModel } from "../../../infra/shared/http/specialty-view.model";
 import { Specialty } from "../entities/specialty.entity";
 
 export interface ISpecialtyRepository {

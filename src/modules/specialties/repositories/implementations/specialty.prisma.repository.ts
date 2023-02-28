@@ -1,5 +1,5 @@
 import { prismaClient } from "../../../../infra/database/prisma.config";
-import { SpecialtyViewModel } from "../../../../infra/http/specialty-view.model";
+import { SpecialtyViewModel } from "../../../../infra/shared/http/specialty-view.model";
 import { Specialty } from "../../entities/specialty.entity";
 import { ISpecialtyRepository } from "../specialty.repository";
 

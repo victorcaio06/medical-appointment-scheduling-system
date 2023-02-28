@@ -1,4 +1,4 @@
-import { Specialty } from "../../modules/specialties/entities/specialty.entity";
+import { Specialty } from "../../../modules/specialties/entities/specialty.entity";
 
 export class SpecialtyViewModel {
   static toHttp(specialty: Specialty) {
