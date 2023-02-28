@@ -6,10 +6,10 @@ import { IUserRepository } from "../user.repository";
 
 export class UserPrismaRepository implements IUserRepository {
   async save(data: User): Promise<UserViewModel> {
-    const { name, username, password } = data;
+    const { name, username, password, id, isAdmin } = data;
 
     const userCreated = await prismaClient.user.create({
-      data: { name, username, password },
+      data: { name, username, password, id, isAdmin },
       select: { name: true, username: true },
     });
     return userCreated;

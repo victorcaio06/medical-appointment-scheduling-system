@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 type IUser = {
   name: string;
   username: string;
@@ -5,6 +7,7 @@ type IUser = {
 };
 
 export class User {
+  id: string;
   isAdmin?: boolean;
   name: string;
   username: string;
@@ -15,6 +18,7 @@ export class User {
     this.username = username;
     this.password = password;
     this.isAdmin = false;
+    this.id = randomUUID();
   }
 
   static create({ name, username, password }: IUser): User {
