@@ -23,7 +23,7 @@ export class AuthenticateUserController {
 
       const result = await authenticateUserUseCase.execute(data);
 
-      return response.json(result);
+      return response.status(200).json(result);
     } catch (err: any) {
       return response.status(err.statusCode).json({
         ERROR: err.message,

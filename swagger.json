@@ -11,6 +11,9 @@
         "tags": [
           "Specialties"
         ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "description": "Cadastrar especialidade do médico.",
         "requestBody": {
           "content": {
@@ -39,6 +42,31 @@
           },
           "500": {
             "description": "Internal server error!"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Autenticação do usuário.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token gerado."
+          },
+          "401": {
+            "description": "Mensagem de erro."
           }
         }
       }
@@ -79,6 +107,34 @@
             "example": "Área responsável pelo cuidado da saúde relacionada aos elementos do aparelho locomotor, como ossos, músculos, ligamentos e articulações."
           }
         }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Username do usuário.",
+            "example": "username_test"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do usuário.",
+            "example": "12345678"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Autenticação da API",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "tokenUrl": "http://localhost:3434/login"
       }
     }
   }
