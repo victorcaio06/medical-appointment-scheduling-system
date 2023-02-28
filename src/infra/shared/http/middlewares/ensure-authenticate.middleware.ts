@@ -18,7 +18,10 @@ export const ensureAuthenticate = (
 
   const verifyToken = new JwtToken().validate(token);
 
-  if (verifyToken) return next();
+  if (verifyToken) {
+    request.userId = verifyToken.sub;
+    return next();
+  }
 
   return response.status(401).json({
     ERROR: "Token invalid!",

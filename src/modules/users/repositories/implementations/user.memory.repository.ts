@@ -24,6 +24,10 @@ export class UserMemoryRepository implements IUserRepository {
     return data;
   }
 
+  findById(id: string): Promise<User | null> {
+    throw new Error("Method not implemented.");
+  }
+
   async findByUsername(username: string): Promise<User | undefined> {
     return this.users.find((user) => user.username === username);
   }
