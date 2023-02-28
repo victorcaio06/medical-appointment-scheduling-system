@@ -16,22 +16,30 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#components/schemas/SpecialtiesRequest"
+                "$ref": "#/components/schemas/SpecialtiesRequest"
               }
             }
           }
         },
-        "response": {
+        "responses": {
           "201": {
             "content": {
               "application/json": {
-                "schema"
+                "schema": {
+                  "$ref": "#/components/schemas/SpecialtiesResponse"
+                }
               }
             }
           },
-          "409": {},
-          "422": {},
-          "500": {}
+          "409": {
+            "description": "Specialty already exists!"
+          },
+          "422": {
+            "description": "Name is required!"
+          },
+          "500": {
+            "description": "Internal server error!"
+          }
         }
       }
     }
@@ -56,6 +64,21 @@
           "name",
           "description"
         ]
+      },
+      "SpecialtiesResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da especialidade.",
+            "example": "Ortopedia"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição da especialidade.",
+            "example": "Área responsável pelo cuidado da saúde relacionada aos elementos do aparelho locomotor, como ossos, músculos, ligamentos e articulações."
+          }
+        }
       }
     }
   }
