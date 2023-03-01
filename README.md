@@ -24,3 +24,13 @@ API for managing medical appointments
   - [ ] Não deve ser possível cadastrar uma especialidade com o campo nome vazio.
   - [ ] O usuário precisa ter permissão de administrador.
   - [ ] Deve ser possível cadastrar uma especialidade sem passar a descrição da mesma.
+
+---
+
+### **Cadastrar médico**
+- [] Deve ser possível cadastrar um médico.
+  - [ ] O médico deve possuir um CRM com 6 dígitos.
+  - [ ] O médico deve estar atrelado a um usuário.
+  - [ ] O médico deve ter uma e somente uma especialidade.
+  - [ ] Não deve ser possível cadastrar um médico sem CRM.
+  - [ ] Não deve ser possível cadastrar um médico com um CRM já existente. 
