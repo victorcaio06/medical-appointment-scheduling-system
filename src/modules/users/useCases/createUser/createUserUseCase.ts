@@ -17,9 +17,6 @@ export class CreateUserUseCase {
   ) {}
 
   async execute({ name, username, password }: UserRequest) {
-    if (!name || !username || !password)
-      throw new ParameterRequiredError("Username/password is required!", 422);
-
     const usernameExists = await this.userRepository.findByUsername(username);
 
     if (usernameExists)
@@ -32,7 +29,7 @@ export class CreateUserUseCase {
     const user = User.create({ name, username, password });
 
     user.password = await this.passwordCrypto.hash(password);
-    
+
     const userCreated = await this.userRepository.save(user);
 
     return userCreated;
