@@ -18,6 +18,8 @@ model User {
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
 
+  doctor Doctor?
+
   @@map("users")
 }
 
@@ -27,8 +29,27 @@ model Specialty {
   description String?
 
   createdAt DateTime @default(now())
+  doctor    Doctor[]
 
   @@id([id])
   @@unique([name])
   @@map("specialties")
+}
+
+model Doctor {
+  id    String @default(uuid())
+  crm   String @unique
+  email String
+
+  createdAt DateTime @default(now())
+
+  user_id      String
+  specialty_id String
+
+  user      User      @relation(fields: [user_id], references: [id])
+  specialty Specialty @relation(fields: [specialty_id], references: [id])
+
+  @@id([id])
+  @@unique([user_id])
+  @@map("doctors")
 }
