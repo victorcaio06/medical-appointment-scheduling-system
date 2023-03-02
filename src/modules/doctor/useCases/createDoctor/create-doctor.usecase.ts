@@ -1,4 +1,5 @@
 import { CustomError } from "../../../../errors/custom.error";
+import { ISpecialtyRepository } from "../../../specialties/repositories/specialty.repository";
 import { User } from "../../../users/entities/user.entity";
 import { IUserRepository } from "../../../users/repositories/user.repository";
 import { Doctor } from "../../entities/doctor.entity";
@@ -16,7 +17,8 @@ export type CreateDoctorRequest = {
 export class CreateDoctorUseCase {
   constructor(
     private userRepository: IUserRepository,
-    private doctorRepository: IDoctorRepository
+    private doctorRepository: IDoctorRepository,
+    private specialtyRepository: ISpecialtyRepository
   ) {}
 
   async execute({
@@ -28,6 +30,17 @@ export class CreateDoctorUseCase {
     specialtyId,
   }: CreateDoctorRequest) {
     const user = User.create({ name, username, password });
+
+    const specialtyExists = await this.specialtyRepository.findById(
+      specialtyId
+    );
+
+    if (!specialtyExists)
+      throw new CustomError(
+        "Specialty does not exists!",
+        400,
+        "SPECIALTY_NOT_EXISTS_ERROR"
+      );
 
     const usernameExists = await this.userRepository.findByUsername(username);
 

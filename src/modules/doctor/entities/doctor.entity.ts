@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+
 import { CustomError } from "../../../errors/custom.error";
 
 export type DoctorProps = {

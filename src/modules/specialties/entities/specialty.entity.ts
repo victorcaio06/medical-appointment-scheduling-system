@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 import { CustomError } from "../../../errors/custom.error";
 
 type ISpecialty = {
@@ -6,12 +8,14 @@ type ISpecialty = {
 };
 
 export class Specialty {
+  id: string;
   name: string;
-  description?: string;
+  description?: string | null;
 
   private constructor({ name, description }: ISpecialty) {
     this.name = name;
     this.description = description;
+    this.id = randomUUID();
   }
 
   static create({ name, description }: ISpecialty) {
