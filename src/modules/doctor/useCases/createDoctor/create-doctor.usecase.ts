@@ -29,8 +29,6 @@ export class CreateDoctorUseCase {
     password,
     specialtyId,
   }: CreateDoctorRequest) {
-    const user = User.create({ name, username, password });
-
     const specialtyExists = await this.specialtyRepository.findById(
       specialtyId
     );
@@ -55,6 +53,8 @@ export class CreateDoctorUseCase {
 
     if (crmExits)
       throw new CustomError("CRM already exits!", 409, "CRM_EXISTS_ERROR");
+
+    const user = await User.create({ name, username, password });
 
     await this.userRepository.save(user);
 
