@@ -11,9 +11,11 @@
         "tags": [
           "Specialties"
         ],
-        "security": [{
-          "bearerAuth": []
-        }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Cadastrar especialidade do médico.",
         "requestBody": {
           "content": {
@@ -67,6 +69,37 @@
           },
           "401": {
             "description": "Mensagem de erro."
+          }
+        }
+      }
+    },
+    "/doctors": {
+      "post": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "Cadastrar médico.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created doctor."
+          },
+          "400": {
+            "description": "Specialty does not exists."
+          },
+          "409": {
+            "description": "Duplicate information."
+          },
+          "422": {
+            "description": "Name/Username/Password is required."
           }
         }
       }
@@ -126,6 +159,42 @@
           "username",
           "password"
         ]
+      },
+      "DoctorRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do médico.",
+            "example": "José da Silva"
+          },
+          "crm": {
+            "type": "string",
+            "description": "Número do CRM",
+            "example": "123456",
+            "length": 6
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do médico.",
+            "example": "doctor@email.com"
+          },
+          "username": {
+            "type": "string",
+            "description": "O username escolhido pelo médico.",
+            "example": "doctor_test"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do médico.",
+            "example": "Doctor1234"
+          },
+          "specialtyId": {
+            "type": "string",
+            "description": "ID da especialidade do médico.",
+            "format": "uuid"
+          }
+        }
       }
     },
     "securitySchemes": {
