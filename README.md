@@ -28,9 +28,19 @@ API for managing medical appointments
 ---
 
 ### **Cadastrar médico**
-- [] Deve ser possível cadastrar um médico.
+- [ ] Deve ser possível cadastrar um médico.
   - [ ] O médico deve possuir um CRM com 6 dígitos.
   - [ ] O médico deve estar atrelado a um usuário.
   - [ ] O médico deve ter uma e somente uma especialidade.
   - [ ] Não deve ser possível cadastrar um médico sem CRM.
   - [ ] Não deve ser possível cadastrar um médico com um CRM já existente. 
+  
+---
+
+### **Cadastrar informações do médico**
+- [ ] Deve ser possível cadastrar as informações do médico.
+  - [ ] O médico deve estar cadastrado.
+  - [ ] O médico deve estar autenticado na aplicação.
+  - [ ] Não deve ser possível ter mais de um registro de informação por médico.
+  - [ ] O horário de termino não deve ser menor que o de início do atendimento.
+  - [ ] A duração da consulta não pode ser menor ou igual a zero.

@@ -48,8 +48,24 @@ model Doctor {
 
   user      User      @relation(fields: [user_id], references: [id])
   specialty Specialty @relation(fields: [specialty_id], references: [id])
+  doctor_info DoctorInfo?
 
   @@id([id])
   @@unique([user_id])
   @@map("doctors")
+}
+
+model DoctorInfo {
+  id        String  @default(uuid())
+  start_at  String
+  end_at    String
+  duration  Int
+  price     Decimal
+  doctor_id String
+
+  doctor Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@id([id])
+  @@unique([doctor_id])
+  @@map("doctor_info")
 }

@@ -1,5 +1,5 @@
-import { Doctor } from "../../entities/doctor.entity";
-import { IDoctorRepository } from "../doctor.repository";
+import { Doctor } from "../../../entities/doctor.entity";
+import { IDoctorRepository } from "../../doctor.repository";
 
 export class DoctorMemoryRepository implements IDoctorRepository {
   doctors: Doctor[];
@@ -25,5 +25,15 @@ export class DoctorMemoryRepository implements IDoctorRepository {
 
   async findByCrm(crm: string): Promise<Doctor | null> {
     return this.doctors.find((doctor) => doctor.crm === crm) || null;
+  }
+
+  async findById(id: string): Promise<Doctor | null> {
+    return (await this.doctors.find((doctor) => doctor.id === id)) || null;
+  }
+
+  async findByUserId(userId: string): Promise<Doctor | null> {
+    return (
+      (await this.doctors.find((doctor) => doctor.userId === userId)) || null
+    );
   }
 }

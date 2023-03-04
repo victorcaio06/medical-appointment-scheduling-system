@@ -4,7 +4,7 @@ import { Specialty } from "../../../../specialties/entities/specialty.entity";
 import { SpecialtyMemoryRepository } from "../../../../specialties/repositories/implementations/specialty.memory.repository";
 import { ISpecialtyRepository } from "../../../../specialties/repositories/specialty.repository";
 import { UserMemoryRepository } from "../../../../users/repositories/implementations/user.memory.repository";
-import { DoctorMemoryRepository } from "../../../repositories/implementations/doctor.memory.repository";
+import { DoctorMemoryRepository } from "../../../repositories/implementations/inMemory/doctor.memory.repository";
 import {
   CreateDoctorRequest,
   CreateDoctorUseCase,
