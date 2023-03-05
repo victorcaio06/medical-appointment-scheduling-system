@@ -33,7 +33,13 @@ export class DoctorPrismaRepository implements IDoctorRepository {
     return null;
   }
 
-  findByUserId(userId: string): Promise<Doctor | null> {
-    throw new Error("Method not implemented.");
+  async findByUserId(userId: string): Promise<Doctor | null> {
+    const doctor = await prismaClient.doctor.findUnique({
+      where: { user_id: userId },
+    });
+
+    if (doctor) return DoctorMapper.PrismaToEntityDoctor(doctor);
+
+    return null;
   }
 }
