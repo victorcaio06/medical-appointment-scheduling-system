@@ -6,10 +6,7 @@ import swaggerDocument from "../swagger.json";
 
 import { CustomError } from "./errors/custom.error";
 import { prismaClient } from "./infra/database/prisma.config";
-
-import { specialtyRouter } from "./routes/specialty.routes";
-import { userRouter } from "./routes/user.routes";
-import { doctorRouter } from "./routes/doctor.routes";
+import { router } from "./routes";
 
 const app = express();
 
@@ -18,12 +15,9 @@ app.use(express.json());
 config();
 
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use(router);
 
 const port = 3434;
-
-app.use(userRouter);
-app.use(specialtyRouter);
-app.use(doctorRouter);
 
 try {
   prismaClient.$connect();
