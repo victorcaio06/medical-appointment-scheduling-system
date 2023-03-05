@@ -103,6 +103,39 @@
           }
         }
       }
+    },
+    "/doctor-info": {
+      "post": {
+        "tags": [
+          "doctor-info"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Cadastrar informação de um médico.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created doctor info"
+          },
+          "400": {
+            "description": "Invalid information's."
+          },
+          "404": {
+            "description": "Doctor does not exists."
+          }
+        }
+      }
     }
   },
   "components": {
@@ -193,6 +226,31 @@
             "type": "string",
             "description": "ID da especialidade do médico.",
             "format": "uuid"
+          }
+        }
+      },
+      "DoctorInfoRequest": {
+        "type": "object",
+        "properties": {
+          "startAt": {
+            "type": "string",
+            "description": "Horário de início do atendimento.",
+            "example": "10:00"
+          },
+          "endAt": {
+            "type": "string",
+            "description": "Horário de encerramento do atendimento.",
+            "example": "18:00"
+          },
+          "price": {
+            "type": "number",
+            "description": "Valor da consulta.",
+            "example": 150
+          },
+          "duration": {
+            "type": "number",
+            "description": "Tempo de duração da consulta.",
+            "example": 10
           }
         }
       }
