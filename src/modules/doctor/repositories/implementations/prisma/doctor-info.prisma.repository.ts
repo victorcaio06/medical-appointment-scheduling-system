@@ -4,7 +4,7 @@ import { DoctorInfoMapper } from "../../../mappers/doctor-info.mapper";
 import { IDoctorInfoRepository } from "../../doctor-info.repository";
 
 export class DoctorInfoPrismaRepository implements IDoctorInfoRepository {
-  async save({
+  async saveOrUpdate({
     startAt,
     endAt,
     duration,
@@ -12,14 +12,21 @@ export class DoctorInfoPrismaRepository implements IDoctorInfoRepository {
     id,
     doctorId,
   }: DoctorInfo): Promise<DoctorInfo> {
-    const doctorCreated = await prismaClient.doctorInfo.create({
-      data: {
+    const doctorCreated = await prismaClient.doctorInfo.upsert({
+      where: { doctor_id: doctorId },
+      create: {
         start_at: startAt,
         end_at: endAt,
         duration,
         price,
         id,
         doctor_id: doctorId,
+      },
+      update: {
+        start_at: startAt ?? undefined,
+        end_at: endAt ?? undefined,
+        duration: duration ?? undefined,
+        price: price ?? undefined,
       },
     });
 

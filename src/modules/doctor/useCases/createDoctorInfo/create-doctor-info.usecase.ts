@@ -31,6 +31,6 @@ export class CreateDoctorInfoUseCase {
       doctorId: doctorByUserId.id,
     });
 
-    return await this.doctorInfoRepository.save(doctorInfo);
+    return await this.doctorInfoRepository.saveOrUpdate(doctorInfo);
   }
 }
