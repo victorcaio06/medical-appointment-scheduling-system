@@ -27,7 +27,7 @@ export class CreatePatientUseCase {
   }: CreatePatientRequest) {
     const usernameExists = await this.userRepository.findByUsername(username);
 
-    if (!usernameExists)
+    if (usernameExists)
       throw new CustomError(
         "Username already exists!",
         409,
@@ -36,16 +36,7 @@ export class CreatePatientUseCase {
 
     const user = await User.create({ name, username, password });
 
-    const userCreated = await this.userRepository.save({
-      id: user.id,
-      name,
-      username,
-      password: user.password,
-      isAdmin: user.isAdmin,
-    });
-
-    const patient = Patient.create({ document, email, userId: userCreated.id });
-
+    const patient = Patient.create({ document, email, userId: user.id });
 
     const existsPatient = await this.patientRepository.findByDocumentOrEmail(
       document,
@@ -58,6 +49,14 @@ export class CreatePatientUseCase {
         409,
         "PATIENT_EXISTS_ERROR"
       );
+
+    await this.userRepository.save({
+      id: user.id,
+      name,
+      username,
+      password: user.password,
+      isAdmin: user.isAdmin,
+    });
 
     const patientCrated = await this.patientRepository.save(patient);
 

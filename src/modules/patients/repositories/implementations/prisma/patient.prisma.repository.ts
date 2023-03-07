@@ -17,7 +17,9 @@ export class PatientPrismaRepository implements IPatientRepository {
     email: string
   ): Promise<Patient | null> {
     const patient = await prismaClient.patient.findFirst({
-      where: { OR: [{ document }, { email }] },
+      where: {
+        OR: [{ document: { equals: document } }, { email: { equals: email } }],
+      },
     });
 
     if (patient) return PatientMapper.PrismaToEntity(patient);

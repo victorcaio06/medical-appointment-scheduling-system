@@ -107,7 +107,7 @@
     "/doctor-info": {
       "post": {
         "tags": [
-          "doctor-info"
+          "Doctor-info"
         ],
         "security": [
           {
@@ -133,6 +133,37 @@
           },
           "404": {
             "description": "Doctor does not exists."
+          }
+        }
+      }
+    },
+    "/patients": {
+      "post": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "Cadastrar um paciente.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created patient."
+          },
+          "400": {
+            "description": "Invalid information's."
+          },
+          "409": {
+            "description": "Duplicate information's."
+          },
+          "422": {
+            "description": "Name/Username/Password is required."
           }
         }
       }
@@ -251,6 +282,37 @@
             "type": "number",
             "description": "Tempo de duração da consulta.",
             "example": 10
+          }
+        }
+      },
+      "PatientRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do paciente.",
+            "example": "patient_test"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username do paciente.",
+            "example": "username_patient"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do paciente.",
+            "example": "patient_password"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do paciente.",
+            "example": "patient_email"
+          },
+          "document": {
+            "type": "string",
+            "description": "Documento do paciente.",
+            "example": "document_patient",
+            "min": 5
           }
         }
       }
