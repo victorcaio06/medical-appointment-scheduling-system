@@ -18,7 +18,8 @@ model User {
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
 
-  doctor Doctor?
+  doctor  Doctor?
+  patient Patient?
 
   @@map("users")
 }
@@ -39,15 +40,15 @@ model Specialty {
 model Doctor {
   id    String @default(uuid())
   crm   String @unique
-  email String
+  email String @unique
 
   createdAt DateTime @default(now())
 
   user_id      String
   specialty_id String
 
-  user      User      @relation(fields: [user_id], references: [id])
-  specialty Specialty @relation(fields: [specialty_id], references: [id])
+  user        User        @relation(fields: [user_id], references: [id])
+  specialty   Specialty   @relation(fields: [specialty_id], references: [id])
   doctor_info DoctorInfo?
 
   @@id([id])
@@ -68,4 +69,17 @@ model DoctorInfo {
   @@id([id])
   @@unique([doctor_id])
   @@map("doctor_info")
+}
+
+model Patient {
+  id       String @default(uuid())
+  document String
+  email    String
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@id([id])
+  @@unique([document, email])
+  @@map("patients")
 }
