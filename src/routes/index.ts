@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { doctorInfoRouter } from "./doctor-info.routes";
 import { doctorRouter } from "./doctor.routes";
+import { patientRouter } from "./patient.routes";
 import { specialtyRouter } from "./specialty.routes";
 import { userRouter } from "./user.routes";
 
@@ -11,5 +12,6 @@ router.use(userRouter);
 router.use(specialtyRouter);
 router.use(doctorRouter);
 router.use(doctorInfoRouter);
+router.use(patientRouter);
 
 export { router };
