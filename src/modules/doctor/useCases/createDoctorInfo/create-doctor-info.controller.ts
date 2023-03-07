@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { IDoctorInfoRepository } from "../../repositories/doctor-info.repository";
 import { IDoctorRepository } from "../../repositories/doctor.repository";
 import { CreateDoctorInfoUseCase } from "./create-doctor-info.usecase";
