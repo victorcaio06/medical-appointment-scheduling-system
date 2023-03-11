@@ -5,8 +5,6 @@ import { IDoctorInfoRepository } from "../../doctor-info.repository";
 
 export class DoctorInfoPrismaRepository implements IDoctorInfoRepository {
   async saveOrUpdate({
-    startAt,
-    endAt,
     duration,
     price,
     id,
@@ -15,16 +13,12 @@ export class DoctorInfoPrismaRepository implements IDoctorInfoRepository {
     const doctorCreated = await prismaClient.doctorInfo.upsert({
       where: { doctor_id: doctorId },
       create: {
-        start_at: startAt,
-        end_at: endAt,
         duration,
         price,
         id,
         doctor_id: doctorId,
       },
       update: {
-        start_at: startAt ?? undefined,
-        end_at: endAt ?? undefined,
         duration: duration ?? undefined,
         price: price ?? undefined,
       },
