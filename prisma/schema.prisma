@@ -47,9 +47,10 @@ model Doctor {
   user_id      String
   specialty_id String
 
-  user        User        @relation(fields: [user_id], references: [id])
-  specialty   Specialty   @relation(fields: [specialty_id], references: [id])
-  doctor_info DoctorInfo?
+  user             User             @relation(fields: [user_id], references: [id])
+  specialty        Specialty        @relation(fields: [specialty_id], references: [id])
+  doctor_info      DoctorInfo?
+  doctor_schedules DoctorSchedules[]
 
   @@id([id])
   @@unique([user_id])
@@ -58,8 +59,6 @@ model Doctor {
 
 model DoctorInfo {
   id        String  @default(uuid())
-  start_at  String
-  end_at    String
   duration  Int
   price     Decimal
   doctor_id String
@@ -82,4 +81,17 @@ model Patient {
   @@id([id])
   @@unique([document, email])
   @@map("patients")
+}
+
+model DoctorSchedules {
+  id          String @default(uuid())
+  start_at    String
+  end_at      String
+  day_of_week Int
+  doctor_id   String
+
+  doctor Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@id([id])
+  @@map("doctor_schedules")
 }
