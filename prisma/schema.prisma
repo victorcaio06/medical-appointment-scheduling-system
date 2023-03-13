@@ -47,10 +47,11 @@ model Doctor {
   user_id      String
   specialty_id String
 
-  user             User             @relation(fields: [user_id], references: [id])
-  specialty        Specialty        @relation(fields: [specialty_id], references: [id])
+  user             User              @relation(fields: [user_id], references: [id])
+  specialty        Specialty         @relation(fields: [specialty_id], references: [id])
   doctor_info      DoctorInfo?
   doctor_schedules DoctorSchedules[]
+  appointment      Appointment[]
 
   @@id([id])
   @@unique([user_id])
@@ -75,8 +76,9 @@ model Patient {
   document String
   email    String
 
-  user_id String @unique
-  user    User   @relation(fields: [user_id], references: [id])
+  user_id     String        @unique
+  user        User          @relation(fields: [user_id], references: [id])
+  appointment Appointment[]
 
   @@id([id])
   @@unique([document, email])
@@ -94,4 +96,19 @@ model DoctorSchedules {
 
   @@id([id])
   @@map("doctor_schedules")
+}
+
+model Appointment {
+  id          String   @default(uuid())
+  date        DateTime
+  note        String
+  is_finished Boolean  @default(false)
+  doctor_id   String
+  patient_id  String
+
+  doctor  Doctor  @relation(fields: [doctor_id], references: [id])
+  patient Patient @relation(fields: [patient_id], references: [id])
+
+  @@id([id])
+  @@map("appointments")
 }
