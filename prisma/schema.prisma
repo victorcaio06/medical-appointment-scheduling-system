@@ -47,11 +47,11 @@ model Doctor {
   user_id      String
   specialty_id String
 
-  user             User              @relation(fields: [user_id], references: [id])
-  specialty        Specialty         @relation(fields: [specialty_id], references: [id])
-  doctor_info      DoctorInfo?
-  doctor_schedules DoctorSchedules[]
-  appointment      Appointment[]
+  user            User              @relation(fields: [user_id], references: [id])
+  specialty       Specialty         @relation(fields: [specialty_id], references: [id])
+  doctorInfo      DoctorInfo?
+  doctorSchedules DoctorSchedules[]
+  appointment     Appointment[]
 
   @@id([id])
   @@unique([user_id])
