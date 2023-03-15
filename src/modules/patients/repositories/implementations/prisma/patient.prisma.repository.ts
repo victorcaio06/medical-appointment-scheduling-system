@@ -12,6 +12,16 @@ export class PatientPrismaRepository implements IPatientRepository {
     return PatientMapper.PrismaToEntity(patient);
   }
 
+  async findById(id: string): Promise<Patient | null> {
+    const patient = await prismaClient.patient.findUnique({
+      where: { id },
+    });
+
+    if (patient) return PatientMapper.PrismaToEntity(patient);
+
+    return null;
+  }
+
   async findByDocumentOrEmail(
     document: string,
     email: string
@@ -20,6 +30,16 @@ export class PatientPrismaRepository implements IPatientRepository {
       where: {
         OR: [{ document: { equals: document } }, { email: { equals: email } }],
       },
+    });
+
+    if (patient) return PatientMapper.PrismaToEntity(patient);
+
+    return null;
+  }
+
+  async findByUserId(userId: string): Promise<Patient | null> {
+    const patient = await prismaClient.patient.findUnique({
+      where: { user_id: userId },
     });
 
     if (patient) return PatientMapper.PrismaToEntity(patient);

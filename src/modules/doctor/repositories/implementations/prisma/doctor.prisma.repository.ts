@@ -19,8 +19,16 @@ export class DoctorPrismaRepository implements IDoctorRepository {
     return DoctorMapper.PrismaToEntityDoctor(doctor);
   }
 
-  findById(id: string): Promise<Doctor | null> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<Doctor | null> {
+    const doctor = await prismaClient.doctor.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (doctor) return DoctorMapper.PrismaToEntityDoctor(doctor);
+
+    return null;
   }
 
   async findByCrm(crm: string): Promise<Doctor | null> {
