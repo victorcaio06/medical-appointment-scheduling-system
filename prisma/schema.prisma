@@ -101,13 +101,13 @@ model DoctorSchedules {
 model Appointment {
   id          String   @default(uuid())
   date        DateTime
-  note        String
+  note        String?
   is_finished Boolean  @default(false)
   doctor_id   String
   patient_id  String
 
   doctor  Doctor  @relation(fields: [doctor_id], references: [id])
-  patient Patient @relation(fields: [patient_id], references: [id])
+  patient Patient @relation(fields: [patient_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
 
   @@id([id])
   @@map("appointments")
