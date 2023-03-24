@@ -1,4 +1,5 @@
 import { prismaClient } from "../../../../../infra/database/prisma.config";
+import { PatientWithUserDTO } from "../../../dto/patient.dto";
 import { Patient } from "../../../entities/patient.entity";
 import { PatientMapper } from "../../../mappers/patient.mapper";
 import { IPatientRepository } from "../../patient.repository";
@@ -37,12 +38,13 @@ export class PatientPrismaRepository implements IPatientRepository {
     return null;
   }
 
-  async findByUserId(userId: string): Promise<Patient | null> {
+  async findByUserId(userId: string): Promise<PatientWithUserDTO | null> {
     const patient = await prismaClient.patient.findUnique({
       where: { user_id: userId },
+      include: { user: true },
     });
 
-    if (patient) return PatientMapper.PrismaToEntity(patient);
+    if (patient) return PatientMapper.PrismaToEntityIncludeUser(patient);
 
     return null;
   }
