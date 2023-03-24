@@ -22,11 +22,13 @@
   "homepage": "https://github.com/victorcaio06/medical-appointment-scheduling-system#readme",
   "dependencies": {
     "@prisma/client": "^4.11.0",
+    "@types/nodemailer": "^6.4.7",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.9.1",
     "swagger-ui-express": "^4.6.2",
     "winston": "^3.8.2",
     "zod": "^3.21.2"
