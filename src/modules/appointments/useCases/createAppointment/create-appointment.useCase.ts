@@ -1,4 +1,5 @@
 import { CustomError } from "../../../../errors/custom.error";
+import { IMailProvider } from "../../../../infra/providers/mail/mail.provider";
 import {
   dateToString,
   formatDateUTC,
@@ -21,7 +22,8 @@ export class CreateAppointmentUseCase {
     private patientRepository: IPatientRepository,
     private doctorRepository: IDoctorRepository,
     private doctorScheduleRepository: IDoctorScheduleRepository,
-    private appointmentRepository: IAppointmentRepository
+    private appointmentRepository: IAppointmentRepository,
+    private mailProvider: IMailProvider
   ) {}
 
   async execute(data: CreateAppointmentRequest, userId: string) {
@@ -80,6 +82,17 @@ export class CreateAppointmentUseCase {
       date: toDate(data.date),
       doctorId: data.doctorId,
       patientId: patientExists.id,
+    });
+
+    await this.mailProvider.sendEmail({
+      to: patientExists.email,
+      from: "Agendamento de consulta <noreplay@agendaMedico.com.br>",
+      html: `
+        Olá ${patientExists.user.name} <br/>
+        Gostaria de confirmar o <strong>agendamento de consulta</strong> para o dia ${data.date}
+        com o doutor ${doctorExists.user.name}
+      `,
+      subject: "Agendamento de consulta",
     });
 
     await this.appointmentRepository.save(appointment);
