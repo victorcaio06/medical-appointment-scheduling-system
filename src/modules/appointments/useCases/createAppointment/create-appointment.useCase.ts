@@ -2,6 +2,7 @@ import { CustomError } from "../../../../errors/custom.error";
 import { IMailProvider } from "../../../../infra/providers/mail/mail.provider";
 import {
   dateToString,
+  formatDate,
   formatDateUTC,
   getDayOfWeek,
   toDate,
@@ -89,8 +90,13 @@ export class CreateAppointmentUseCase {
       from: "Agendamento de consulta <noreplay@agendaMedico.com.br>",
       html: `
         Olá ${patientExists.user.name} <br/>
-        Gostaria de confirmar o <strong>agendamento de consulta</strong> para o dia ${data.date}
-        com o doutor ${doctorExists.user.name}
+        Gostaria de confirmar o <strong>agendamento de consulta</strong> para o dia ${formatDate(
+          data.date,
+          "DD/MM/YYYY"
+        )}
+        as ${formatDate(data.date, "HH:mm")} com o doutor <strong>${
+        doctorExists.user.name
+      }</strong>
       `,
       subject: "Agendamento de consulta",
     });
