@@ -8,6 +8,8 @@ import { CustomError } from "./errors/custom.error";
 import { prismaClient } from "./infra/database/prisma.config";
 import { router } from "./routes";
 
+import "./infra/cron/notification-appointments-day.cron";
+
 const app = express();
 
 app.use(express.json());
