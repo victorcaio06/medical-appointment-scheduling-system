@@ -14,6 +14,7 @@ export class CreatePatientController {
   ) {}
   async handle(request: Request, response: Response) {
     const { body } = request;
+    const avatar = request.file?.filename;
 
     const patientSchema = z.object({
       name: z.string(),
@@ -31,7 +32,7 @@ export class CreatePatientController {
     try {
       validatorSchema(patientSchema, body);
 
-      const result = await createPatientUseCase.execute(body);
+      const result = await createPatientUseCase.execute(body, avatar);
 
       return response.status(201).json(result);
     } catch (error: any) {

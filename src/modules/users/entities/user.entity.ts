@@ -6,6 +6,7 @@ type IUser = {
   name: string;
   username: string;
   password: string;
+  avatar?: string | null;
 };
 
 export class User {
@@ -14,8 +15,9 @@ export class User {
   name: string;
   username: string;
   password: string;
+  avatar?: string | null;
 
-  private constructor({ name, username, password }: IUser) {
+  private constructor({ name, username, password, avatar }: IUser) {
     if (!name || !username || !password)
       throw new ParameterRequiredError(
         "Name/username/password is required!",
@@ -27,9 +29,15 @@ export class User {
     this.password = password;
     this.isAdmin = false;
     this.id = randomUUID();
+    this.avatar = avatar;
   }
 
-  static async create({ name, username, password }: IUser): Promise<User> {
+  static async create({
+    name,
+    username,
+    password,
+    avatar,
+  }: IUser): Promise<User> {
     if (!password)
       throw new ParameterRequiredError("Password is required!", 422);
 
@@ -38,7 +46,7 @@ export class User {
 
     password = passwordHashed;
 
-    const user = new User({ name, username, password });
+    const user = new User({ name, username, password, avatar });
 
     return user;
   }

@@ -18,13 +18,10 @@ export class CreatePatientUseCase {
     private patientRepository: IPatientRepository
   ) {}
 
-  async execute({
-    name,
-    username,
-    password,
-    email,
-    document,
-  }: CreatePatientRequest) {
+  async execute(
+    { name, username, password, email, document }: CreatePatientRequest,
+    avatar?: string
+  ) {
     const usernameExists = await this.userRepository.findByUsername(username);
 
     if (usernameExists)
@@ -34,7 +31,7 @@ export class CreatePatientUseCase {
         "USERNAME_EXISTS_ERROR"
       );
 
-    const user = await User.create({ name, username, password });
+    const user = await User.create({ name, username, password, avatar });
 
     const patient = Patient.create({ document, email, userId: user.id });
 
@@ -56,6 +53,7 @@ export class CreatePatientUseCase {
       username,
       password: user.password,
       isAdmin: user.isAdmin,
+      avatar: user.avatar,
     });
 
     const patientCrated = await this.patientRepository.save(patient);
