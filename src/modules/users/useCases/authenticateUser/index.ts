@@ -1,3 +1,4 @@
+import { CreateConnectionRedis } from "../../../../infra/providers/redis";
 import { PasswordBcrypt } from "../../../../infra/shared/crypto/password.bcrypt";
 import { JwtToken } from "../../../../infra/shared/token/jwt.token";
 import { UserPrismaRepository } from "../../repositories/implementations/user.prisma.repository";
@@ -9,10 +10,13 @@ const passwordBcrypt = new PasswordBcrypt();
 
 const token = new JwtToken();
 
+const redisClient = new CreateConnectionRedis();
+
 const authenticateUserController = new AuthenticateUserController(
   userPrismaRepository,
   passwordBcrypt,
-  token
+  token,
+  redisClient
 );
 
 export { authenticateUserController };

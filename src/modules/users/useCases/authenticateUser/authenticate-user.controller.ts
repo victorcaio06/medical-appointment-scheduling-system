@@ -3,12 +3,14 @@ import { IPasswordCrypto } from "../../../../infra/shared/crypto/password.crypto
 import { IToken } from "../../../../infra/shared/token/token";
 import { IUserRepository } from "../../repositories/user.repository";
 import { AuthenticateUserUseCase } from "./authenticate-user.usecase";
+import { CreateConnectionRedis } from "../../../../infra/providers/redis";
 
 export class AuthenticateUserController {
   constructor(
     private userRepository: IUserRepository,
     private passwordCrypto: IPasswordCrypto,
-    private token: IToken
+    private token: IToken,
+    private redisClient: CreateConnectionRedis
   ) {}
 
   async handle(request: Request, response: Response) {
@@ -18,7 +20,8 @@ export class AuthenticateUserController {
       const authenticateUserUseCase = new AuthenticateUserUseCase(
         this.userRepository,
         this.passwordCrypto,
-        this.token
+        this.token,
+        this.redisClient
       );
 
       const result = await authenticateUserUseCase.execute(data);
